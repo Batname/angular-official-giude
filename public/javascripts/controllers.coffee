@@ -12,6 +12,10 @@ phonecatControllers.controller "PhoneListCtrl", [
 phonecatControllers.controller "PhoneDetailCtrl", [
   "$scope"
   "$routeParams"
-  ($scope, $routeParams) ->
-    $scope.phoneId = $routeParams.phoneId
+  "$http"
+  ($scope, $routeParams, $http) ->
+    $http.get("data/" + $routeParams.phoneId + ".json").success (data) ->
+      $scope.phone = data
+      return
+
 ]

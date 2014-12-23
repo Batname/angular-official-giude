@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         // здесь будут настроенные нами таски
         watch : {
             jade : {
-                files : 'views/*.jade',
+                files : 'views/**/*.jade',
                 tasks : 'jade'
             },
             coffee : {

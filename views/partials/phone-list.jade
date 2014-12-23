@@ -2,8 +2,9 @@
     .row
         .col-md-2
             // Sidebar content
-            | Search:
+            | Search by:
             input(ng-model='query')
+            br
             | Sort by:
             select(ng-model='orderProp')
                 option(value='name') Alphabetical

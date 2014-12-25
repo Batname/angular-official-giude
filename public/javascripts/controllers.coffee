@@ -1,21 +1,24 @@
 phonecatControllers = angular.module("phonecatControllers", [])
 phonecatControllers.controller "PhoneListCtrl", [
   "$scope"
-  "$http"
-  ($scope, $http) ->
-    $http.get("data/phones.json").success (data) ->
-      $scope.phones = data
-      return
-
+  "Phone"
+  ($scope, Phone) ->
+    $scope.phones = Phone.query();
     $scope.orderProp = "age"
+    return
 ]
 phonecatControllers.controller "PhoneDetailCtrl", [
   "$scope"
   "$routeParams"
-  "$http"
-  ($scope, $routeParams, $http) ->
-    $http.get("data/" + $routeParams.phoneId + ".json").success (data) ->
-      $scope.phone = data
+  "Phone"
+  ($scope, $routeParams, Phone) ->
+    $scope.phone = Phone.get(
+      phoneId: $routeParams.phoneId
+    , (phone) ->
+      $scope.mainImageUrl = phone.images[0]
       return
-
+    )
+    $scope.setImage = (imageUrl) ->
+      $scope.mainImageUrl = imageUrl
+      return
 ]

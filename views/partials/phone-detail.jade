@@ -1,9 +1,10 @@
-img.phone(ng-src="{{phone.images[0]}}")
+.phone-images
+    img.phone(ng-src="{{img}}" ng-repeat="img in phone.images" ng-class="{active: mainImageUrl==img}")
 h1 {{phone.name}}
 p {{phone.description}}
 ul.phone-thumbs
     li(ng-repeat="img in phone.images")
-        img(ng-src="{{img}}")
+        img(ng-src="{{img}}" ng-click="setImage(img)")
 ul.specs
     li
         span Availability and Networks
@@ -36,9 +37,9 @@ ul.specs
             dt Bluetooth
             dd {{phone.connectivity.bluetooth}}
             dt Infrared
-            dd {{phone.connectivity.infrared}}
+            dd {{phone.connectivity.infrared | checkmark}}
             dt GPS
-            dd {{phone.connectivity.gps}}
+            dd {{phone.connectivity.gps | checkmark}}
     li
         span Android
         dl
@@ -61,7 +62,7 @@ ul.specs
             dt Screen resolution
             dd {{phone.display.screenResolution}}
             dt Touch screen
-            dd {{phone.display.touchScreen}}
+            dd {{phone.display.touchScreen | checkmark}}
     li
         span Hardware
         dl
@@ -72,9 +73,9 @@ ul.specs
             dt Audio / headphone jack
             dd {{phone.hardware.audioJack}}
             dt FM Radio
-            dd {{phone.hardware.fmRadio}}
+            dd {{phone.hardware.fmRadio | checkmark}}
             dt Accelerometer
-            dd {{phone.hardware.accelerometer}}
+            dd {{phone.hardware.accelerometer | checkmark}}
     li
         span Camera
         dl
